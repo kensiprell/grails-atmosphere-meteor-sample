@@ -1,0 +1,5 @@
+<decorators>
+    <excludes>
+        <pattern>/jabber/*</pattern>
+    </excludes>
+</decorators>
