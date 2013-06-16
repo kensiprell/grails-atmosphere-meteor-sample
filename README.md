@@ -39,11 +39,23 @@ You can review the files below to understand how it all works.
 The application also has eight geb functional tests. Use the command below to run the tests in Chrome: 
 
 ```
+git clone git://github.com/kensiprell/grails-atmosphere-meteor-sample.git
+
+cd grails-atmosphere-meteor-sample
+
+grails refresh-dependencies
+
 grails -Dgeb.env=chrome test-app functional:
 ```
 Use the command below to run the tests in Firefox. However, I could not get Selenium to send an ENTER key in Firefox 21, so the chat test could fail.
 
 ```
+git clone git://github.com/kensiprell/grails-atmosphere-meteor-sample.git
+
+cd grails-atmosphere-meteor-sample
+
+grails refresh-dependencies
+
 grails test-app functional:
 ```
 
