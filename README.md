@@ -1,6 +1,6 @@
 ## Sample App for the Grails atmosphere-meteor Plugin
 
-[grails-atmosphere-meteor](https://github.com/kensiprell/grails-atmosphere-meteor)
+I use this application along with the [grails-plugin-test-script](https://github.com/kensiprell/grails-plugin-test-script) for testing the [grails-atmosphere-meteor](https://github.com/kensiprell/grails-atmosphere-meteor) plugin. 
 
 If you have a question, problem, suggestion, or want to report a bug, please submit an [issue](https://github.com/kensiprell/grails-atmosphere-meteor-sample/issues?state=open). I will reply as soon as I can.
 
@@ -35,6 +35,17 @@ You can review the files below to understand how it all works.
 * grails-app/services/org/grails/plugins/atmosphere_meteor_sample/AtmosphereTestService.groovy
 
 * grails-app/views/AtmosphereTest/index.gsp: This file contains all internal JavaScript.
+
+The application also has eight geb functional tests. Use the command below to run the tests in Chrome: 
+
+```
+grails -Dgeb.env=chrome test-app functional:
+```
+Use the command below to run the tests in Firefox. However, I could not get Selenium to send an ENTER key in Firefox 21, so the chat test could fail.
+
+```
+grails test-app functional:
+```
 
 
 
