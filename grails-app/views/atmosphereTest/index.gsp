@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Atmosphere Test</title>
@@ -41,10 +42,11 @@
 </body>
 
 <script type="text/javascript">
+	if (!window.console) console = {log: function() {}};
 	/*
-	 The Jabber variable holds all JavaScript code required for communicating with the server.
+	The Jabber variable holds all JavaScript code required for communicating with the server.
 	 It basically overrides the functions in jquery.atmosphere.js.
-	  */
+	*/
 	var Jabber = {
 		resource: null,
 		socket: null,
