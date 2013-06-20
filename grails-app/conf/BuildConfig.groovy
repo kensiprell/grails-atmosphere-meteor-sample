@@ -30,7 +30,7 @@ grails.project.dependency.resolution = {
 	dependencies {
 		// TODO update version
 		compile("org.atmosphere:atmosphere-runtime:1.1.0.RC4") {  // Added by atmosphere-meteor plugin on Mon Jun 10 21:21:24 CEST 2013.
-			excludes "slf4j-api", "atmosphere-ping"
+			excludes "slf4j-api"
 		}
 		compile "org.codehaus.jackson:jackson-core-asl:1.1.1" // Added by atmosphere-meteor plugin on Mon Jun 10 21:21:24 CEST 2013.
 		test "org.gebish:geb-spock:$gebVersion"

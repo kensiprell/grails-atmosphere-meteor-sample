@@ -13,24 +13,13 @@ class AtmosphereTestController {
 
 	def triggerPublic() {
 		def finishedResponse = [type: "public", resource: "/jabber/public", message: "Finished."] as JSON
-		//def thread = new Thread()
 		Broadcaster b = BroadcasterFactory.getDefault().lookup(SimpleBroadcaster.class, "/jabber/public", true)
-/*
-		thread.start {
-			for (int i = 0; i < 5; i++) {
-				def publicResponse = publicResponse()
-				b.broadcast(publicResponse)
-				sleep(4000)
-			}
-			b.broadcast(finishedResponse)
-		}
-*/
 
 		def thread = Thread.start {
 			for (int i = 0; i < 5; i++) {
 				def publicResponse = publicResponse()
 				b.broadcast(publicResponse)
-				sleep 2000
+				sleep 4000
 			}
 			b.broadcast(finishedResponse)
 		}

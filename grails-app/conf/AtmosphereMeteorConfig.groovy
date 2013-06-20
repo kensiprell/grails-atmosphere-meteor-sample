@@ -35,7 +35,10 @@ defaultInitParams = [
 		"org.atmosphere.cpr.broadcasterCacheClass": "org.atmosphere.cache.UUIDBroadcasterCache",
 		"org.atmosphere.cpr.AtmosphereInterceptor": """
 			org.atmosphere.interceptor.AtmosphereResourceLifecycleInterceptor,
-			org.atmosphere.interceptor.HeartbeatInterceptor,
-			org.atmosphere.client.TrackMessageSizeInterceptor
+			org.atmosphere.interceptor.HeartbeatInterceptor
 		"""
 ]
+
+/*
+			org.atmosphere.client.TrackMessageSizeInterceptor
+*/

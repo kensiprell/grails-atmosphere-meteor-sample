@@ -1,5 +1,7 @@
 package org.grails.plugins.atmosphere_meteor_sample
 
+import org.atmosphere.config.service.MeteorService
+
 //import org.atmosphere.cpr.DefaultBroadcaster
 import org.atmosphere.util.SimpleBroadcaster
 
@@ -20,6 +22,7 @@ import org.atmosphere.websocket.WebSocketEventListenerAdapter
 import org.json.simple.JSONObject
 import org.grails.plugins.atmosphere_meteor.ApplicationContextHolder
 
+@MeteorService
 class DefaultMeteorHandler extends HttpServlet {
 
 	def atmosphereTestService = ApplicationContextHolder.getBean("atmosphereTestService")

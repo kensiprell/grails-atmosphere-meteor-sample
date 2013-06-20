@@ -87,7 +87,7 @@
 						dropAtmosphereHeaders: false,
 						executeCallbackBeforeReconnect: false,
 						withCredentials: false,
-						trackMessageLength: true,
+						trackMessageLength: false,
 						messageDelimiter: '|',
 						shared: false
 					},
