@@ -6,7 +6,7 @@ grails.project.test.reports.dir = "target/test-reports"
 grails.project.target.level = 1.6
 grails.project.source.level = 1.6
 // TODO comment before github push
-//grails.plugin.location.atmosphere_meteor = "/Users/Ken/Development/Plugins/grails-atmosphere-meteor"
+grails.plugin.location.atmosphere_meteor = "/Users/Ken/Development/Plugins/grails-atmosphere-meteor"
 
 grails.project.dependency.resolution = {
 	// http://search.maven.org/#browse%7C778853512
@@ -44,7 +44,7 @@ grails.project.dependency.resolution = {
 		build ":tomcat:$grailsVersion"
 		compile ":cache:1.0.1"
 		// TODO update version and uncomment before github push
-		compile ":atmosphere-meteor:0.5.1"
+		//compile ":atmosphere-meteor:0.5.1"
 		runtime ":hibernate:$grailsVersion"
 		runtime ":jquery:1.10.0"
 		runtime ":resources:1.2"

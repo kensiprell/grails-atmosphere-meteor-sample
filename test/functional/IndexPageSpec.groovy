@@ -25,7 +25,7 @@ class IndexPageSpec extends GebReportingSpec {
 
 	def "chat sends and receives a test message"() {
 		when:
-		chatInput << "test$Keys.ENTER"
+		chatInput << "test" << Keys.ENTER
 
 		then:
 		sleep 1000
