@@ -11,7 +11,6 @@ class DefaultMeteorServlet extends MeteorServlet {
 
 	@Override
 	public void init(ServletConfig sc) throws ServletException {
-		super.init(sc)
 
 		HttpServlet handler
 		String mapping
@@ -27,5 +26,8 @@ class DefaultMeteorServlet extends MeteorServlet {
 		r.setServletClassName(servletClass)
 		framework.addAtmosphereHandler(mapping, r).initAtmosphereHandler(sc)
 		logger.info("Installed MeteorServlet ${servletClass} mapped to ${mapping}")
+
+		super.init(sc)
 	}
 }
+

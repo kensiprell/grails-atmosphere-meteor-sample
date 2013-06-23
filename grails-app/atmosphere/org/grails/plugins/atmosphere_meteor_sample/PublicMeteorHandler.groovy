@@ -2,7 +2,9 @@ package org.grails.plugins.atmosphere_meteor_sample
 
 import org.atmosphere.config.service.MeteorService
 
+import org.atmosphere.cpr.DefaultBroadcaster
 import org.atmosphere.util.SimpleBroadcaster
+import org.springframework.web.util.HtmlUtils
 
 import static org.atmosphere.cpr.AtmosphereResource.TRANSPORT.LONG_POLLING
 import static org.atmosphere.cpr.AtmosphereResource.TRANSPORT.WEBSOCKET
@@ -21,17 +23,15 @@ import org.atmosphere.websocket.WebSocketEventListenerAdapter
 import org.json.simple.JSONObject
 import org.grails.plugins.atmosphere_meteor.ApplicationContextHolder
 
-@MeteorService
-class DefaultMeteorHandler extends HttpServlet {
-
-	def atmosphereTestService = ApplicationContextHolder.getBean("atmosphereTestService")
+@MeteorService(path="/jabber/public")
+class PublicMeteorHandler extends HttpServlet {
 
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-		String mapping = URLDecoder.decode(request.getHeader("AtmosphereMeteor-Mapping"), "UTF-8")
-
-		println "doGet mapping: $mapping"
+		String mapping =
+		//Broadcaster b = BroadcasterFactory.getDefault().lookup(DefaultBroadcaster.class, mapping, true)
+		Broadcaster b = BroadcasterFactory.getDefault().lookup(mapping)
 
 		Meteor m = Meteor.build(request)
 		if (m.transport().equals(WEBSOCKET)) {
@@ -42,7 +42,6 @@ class DefaultMeteorHandler extends HttpServlet {
 
 		response.setContentType("text/html;charset=UTF-8")
 
-		Broadcaster b = BroadcasterFactory.getDefault().lookup(SimpleBroadcaster.class, mapping, true)
 		println "doGet: $b"
 		m.setBroadcaster(b)
 		m.resumeOnBroadcast(m.transport() == LONG_POLLING).suspend(-1)

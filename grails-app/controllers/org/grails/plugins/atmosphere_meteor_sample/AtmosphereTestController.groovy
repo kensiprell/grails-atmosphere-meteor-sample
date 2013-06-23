@@ -3,7 +3,6 @@ package org.grails.plugins.atmosphere_meteor_sample
 import grails.converters.JSON
 import org.atmosphere.cpr.Broadcaster
 import org.atmosphere.cpr.BroadcasterFactory
-import org.atmosphere.util.SimpleBroadcaster
 
 class AtmosphereTestController {
 
@@ -12,22 +11,29 @@ class AtmosphereTestController {
 	}
 
 	def triggerPublic() {
-		def finishedResponse = [type: "public", resource: "/jabber/public", message: "Finished."] as JSON
-		Broadcaster b = BroadcasterFactory.getDefault().lookup(SimpleBroadcaster.class, "/jabber/public", true)
+		String mapping = "/jabber/public"
+		def finishedResponse = [type: "public", resource: mapping, message: "Finished."] as JSON
+		Broadcaster b = BroadcasterFactory.getDefault().lookup(mapping, true)
 
-		def thread = Thread.start {
+		def thread = new Thread()
+		thread.start {
 			for (int i = 0; i < 5; i++) {
 				def publicResponse = publicResponse()
 				b.broadcast(publicResponse)
-				sleep 4000
+				sleep 2000
+				println "publicResponse: $publicResponse"
+				println "b: $b"
 			}
 			b.broadcast(finishedResponse)
+			b.destroy()
+			println "finished: $b"
 		}
 
 		render "success"
 	}
 
 	def publicResponse() {
-		return [type: "public", resource: "/jabber/public", message: "Updated at " + new Date() + "."] as JSON
+		String mapping = "/jabber/public"
+		return [type: "public", resource: mapping, message: "Updated at " + new Date() + "."] as JSON
 	}
 }
