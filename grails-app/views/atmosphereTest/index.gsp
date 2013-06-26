@@ -2,58 +2,84 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta name="layout" content="main"/>
 	<title>Atmosphere Test</title>
+	<r:require module="jquery"/>
+	%{--TODO change the module below to either atmosphere-meteor or atmosphere-meteor-jquery --}%
 	<r:require module="atmosphere-meteor"/>
 	<r:layoutResources/>
-	<style>
-	#chat-window {
-		height: 200px;
-		width: 500px;
-		border: 1px solid black;
-		margin-top: 10px;
-		overflow: auto;
-	}
-
-	#chat-input {
-		width: 500px;
-		margin-top: 10px;
-	}
-	</style>
 </head>
 
 <body>
 <h1>Chat</h1>
-<button id="chat-subscribe">Subscribe</button>
-
+<p>
+	<button id="chat-subscribe">Subscribe</button>
+</p>
 <div id="chat-window"></div>
 <input id="chat-input" type="text"/>
 
 <h1>Notification</h1>
-<button id="notification-subscribe">Subscribe</button>
-<button id="notification-send">Send</button>
-
+<p>
+	<button id="notification-subscribe">Subscribe</button>
+	<button id="notification-send">Send</button>
+</p>
 <p id="notification"></p>
 
 <h1>Public</h1>
-
 <p>After clicking the Subscribe and Trigger buttons, the area below should update every 2 seconds for 5 times.</p>
-
 <p id="public-update"></p>
-<button id="public-subscribe">Subscribe</button>
-<button id="public-trigger">Trigger</button>
+<p>
+	<button id="public-subscribe">Subscribe</button>
+	<button id="public-trigger">Trigger</button>
+</p>
 
 <h1>Unsubscribe</h1>
-
 <p>Clicking the button below will end all subscriptions.</p>
-<button id="unsubscribe">Unsubscribe</button>
-</body>
+<p>
+	<button id="unsubscribe">Unsubscribe</button>
+</p>
 
 <script type="text/javascript">
-	if (!window.console) console = {log: function () {
-	}};
+	// required for IE console logging
+	if (!window.console) console = {log: function () {}};
+
+	$(window).unload(function () {
+		unsubscribe();
+	});
+
+	function chatSubscribe() {
+		var jabberRequest = {
+			type: 'chat',
+			url: 'jabber/chat/12345',
+			trackMessageLength: true
+		};
+		Jabber.subscribe(jabberRequest);
+	}
+
+	function notificationSubscribe() {
+		var jabberRequest = {
+			type: 'notification',
+			// note that the DefaultMeteorHandler uses the header below for setting and getting the broadcaster
+			headers: {'X-AtmosphereMeteor-Mapping': '/jabber/notification/userName'},
+			url: 'jabber/notification/userName',
+			trackMessageLength: true
+		};
+		Jabber.subscribe(jabberRequest);
+	}
+
+	function unsubscribe() {
+		Jabber.unsubscribe();
+		$('#chat-window').html('');
+		$('#notification').html('');
+		$('#public-update').html('');
+		$('button').each(function () {
+			$(this).removeAttr('disabled');
+		})
+	}
+
 	/*
 	 The Jabber variable holds all JavaScript code required for communicating with the server.
-	 It basically wraps the functions in atmosphere.js.
+	 It basically wraps the functions in atmosphere.js and jquery.atmosphere.js.
 	 */
 	var Jabber = {
 		resource: null,
@@ -61,6 +87,7 @@
 		chatSubscription: null,
 		notificationSubscription: null,
 		publicSubscription: null,
+		transport: null,
 
 		publishOptions: {
 			type: '',
@@ -71,43 +98,24 @@
 		subscribe: function (options) {
 			var defaults = {
 						type: '',
-						url: '', // Must start with http:// or https://
-						connectTimeout: -1,
-						reconnectInterval: 0,
-						timeout: 300000,
-						method: 'GET',
+						contentType: "application/json",
+						shared: false,
 						headers: {},
-						contentType: 'application/json',
-						data: '',
-						suspend: true,
-						maxRequest: 60,
-						maxStreamingLength: 10000000,
-						logLevel: 'info', // info | debug | error
-						transport: 'long-polling', //'websocket',
+						//transport: 'websocket',
+						transport: 'long-polling',
 						fallbackTransport: 'long-polling',
-						fallbackMethod: 'GET',
-						webSocketImpl: null,
-						webSocketUrl: null,
-						webSocketPathDelimiter: '@@',
-						enableXDR: false,
-						rewriteURL: false,
-						attachHeadersAsQueryString: true,
-						dropAtmosphereHeaders: false,
-						executeCallbackBeforeReconnect: false,
-						withCredentials: false,
-						trackMessageLength: false,
-						messageDelimiter: '|',
-						shared: false
+						trackMessageLength: false
 					},
 					jabberRequest = $.extend({}, defaults, options);
 			jabberRequest.onOpen = function (response) {
+				Jabber.transport = response.transport;
 				console.log('jabberOpen transport: ' + response.transport);
 			};
 			jabberRequest.onReconnect = function (request, response) {
 				console.log("jabberReconnect");
 			};
 			jabberRequest.onMessage = function (response) {
-				console.log('jabberMessage: ' + response);
+				console.log('jabberMessage: message received');
 				Jabber.onMessage(response);
 			};
 			jabberRequest.onError = function (response) {
@@ -146,12 +154,12 @@
 			if ((message == '')) {
 				return;
 			}
-			console.log(data);
+			//console.log(data);
 			var message = JSON.parse(data);
 			var type = message.type;
-			console.log('type: ' + message.type);
-			console.log('resource: ' + message.resource);
-			console.log('message: ' + message.message);
+			//console.log('type: ' + message.type);
+			//console.log('resource: ' + message.resource);
+			//console.log('message: ' + message.message);
 			if (type == 'chat') {
 				var $chat = $('#chat-window');
 				$chat.append('message: ' + message.message + '<br/>');
@@ -184,9 +192,17 @@
 			switch (type) {
 				case 'chat':
 					Jabber.chatSubscription.push(JSON.stringify(data));
+					// TODO Remove this hack if AtmosphereResourceLifecycleInterceptor works
+					if (Jabber.transport == 'long-polling') {
+						chatSubscribe();
+					}
 					break;
 				case 'notification':
 					Jabber.notificationSubscription.push(JSON.stringify(data));
+					// TODO Remove this hack if AtmosphereResourceLifecycleInterceptor works
+					if (Jabber.transport == 'long-polling') {
+						notificationSubscribe();
+					}
 					break;
 				default:
 					return false;
@@ -195,16 +211,16 @@
 	};
 
 	$(document).ready(function () {
-		Jabber.socket = atmosphere;
+		if (typeof atmosphere == 'undefined') {
+			// if using jquery.atmosphere.js
+			Jabber.socket = $.atmosphere;
+		} else {
+			// if using atmosphere.js
+			Jabber.socket = atmosphere;
+		}
 
 		$('#chat-subscribe').on('click', function () {
-			var jabberRequest = {
-				type: 'chat',
-				//headers: {'X-AtmosphereMeteor-Mapping': '/jabber/chat/12345'},
-				url: 'jabber/chat/12345',
-				trackMessageLength: true
-			};
-			Jabber.subscribe(jabberRequest);
+			chatSubscribe();
 			$(this).attr('disabled', 'disabled');
 		});
 
@@ -222,13 +238,7 @@
 		});
 
 		$('#notification-subscribe').on('click', function () {
-			var jabberRequest = {
-				type: 'notification',
-				headers: {'AtmosphereMeteor-Mapping': '/jabber/notification/userName'},
-				url: 'jabber/notification/userName',
-				trackMessageLength: true
-			};
-			Jabber.subscribe(jabberRequest);
+			notificationSubscribe();
 			$(this).attr('disabled', 'disabled');
 		});
 
@@ -243,9 +253,7 @@
 		$('#public-subscribe').on('click', function () {
 			var jabberRequest = {
 				type: 'public',
-				headers: {'AtmosphereMeteor-Mapping': '/jabber/public'},
-				url: 'jabber/public',
-				trackMessageLength: false
+				url: 'jabber/public'
 			};
 			Jabber.subscribe(jabberRequest);
 			$(this).attr('disabled', 'disabled');
@@ -260,20 +268,6 @@
 			unsubscribe();
 		});
 	});
-
-	$(window).unload(function () {
-		unsubscribe();
-	});
-
-	function unsubscribe() {
-		Jabber.unsubscribe();
-		$('#chat-window').html('');
-		$('#notification').html('');
-		$('#public-update').html('');
-		$('button').each(function () {
-			$(this).removeAttr('disabled');
-		})
-	}
-
 </script>
+</body>
 </html>

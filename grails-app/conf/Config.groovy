@@ -1,5 +1,5 @@
-grails.project.groupId = appName // change this to alter the default package name and Maven publishing destination
-grails.mime.file.extensions = true // enables the parsing of file extensions from URLs into the request format
+grails.project.groupId = appName
+grails.mime.file.extensions = true
 grails.mime.use.accept.header = false
 grails.mime.types = [
 		all: '*/*',
@@ -18,7 +18,7 @@ grails.mime.types = [
 
 grails.resources.adhoc.patterns = ['/images/*', '/css/*', '/js/*', '/plugins/*']
 
-grails.views.default.codec = "html" // none, html, base64
+grails.views.default.codec = "html"
 grails.views.gsp.encoding = "UTF-8"
 grails.converters.encoding = "UTF-8"
 grails.views.gsp.sitemesh.preprocess = true
@@ -43,9 +43,7 @@ environments {
 }
 
 log4j = {
-	//warn 'org.codehaus.groovy.grails.plugins'            // plugins
-
-	warn 'org.codehaus.groovy.grails.web.servlet',        // controllers
+	warn 'org.codehaus.groovy.grails.web.servlet',           // controllers
 			'org.codehaus.groovy.grails.web.pages',          // GSP
 			'org.codehaus.groovy.grails.web.sitemesh',       // layouts
 			'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping

@@ -13,7 +13,7 @@ class AtmosphereTestService {
 	}
 
 	def recordMaliciousUseWarning(data) {
-		// This method could be used to persist errors to a data store.
+		// This method could be used to persist potential malicious code to a data store.
 		println "Warning AtmosphereTestService.recordMaliciousUseWarning: ${data}"
 	}
 }

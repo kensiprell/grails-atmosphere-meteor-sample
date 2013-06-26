@@ -6,7 +6,7 @@ grails.project.test.reports.dir = "target/test-reports"
 grails.project.target.level = 1.6
 grails.project.source.level = 1.6
 // TODO comment before github push
-grails.plugin.location.atmosphere_meteor = "/Users/Ken/Development/Plugins/grails-atmosphere-meteor"
+//grails.plugin.location.atmosphere_meteor = "/Users/Ken/Development/Plugins/grails-atmosphere-meteor"
 
 grails.project.dependency.resolution = {
 	// http://search.maven.org/#browse%7C778853512
@@ -15,11 +15,11 @@ grails.project.dependency.resolution = {
 	def seleniumVersion = "2.33.0"
 	inherits("global") {
 	}
-	log "error" // log level of Ivy resolver, either "error", "warn", "info", "debug" or "verbose"
-	checksums true // Whether to verify checksums on resolve
+	log "error"
+	checksums true
 
 	repositories {
-		inherits true // Whether to inherit repository definitions from plugins
+		inherits true
 		grailsPlugins()
 		grailsHome()
 		grailsCentral()
@@ -29,12 +29,10 @@ grails.project.dependency.resolution = {
 
 	dependencies {
 		// TODO update version
-		//compile("org.atmosphere:atmosphere-runtime:1.0.13") {
 		compile("org.atmosphere:atmosphere-runtime:1.1.0.RC4") {
 			excludes "slf4j-api"
 		}
 		compile "org.codehaus.jackson:jackson-core-asl:1.9.12"
-		compile "org.codehaus.jackson:jackson-mapper-asl:1.9.12"
 		test "org.gebish:geb-spock:$gebVersion"
 		test "org.seleniumhq.selenium:selenium-chrome-driver:$seleniumVersion"
 		test "org.seleniumhq.selenium:selenium-firefox-driver:$seleniumVersion"
@@ -46,7 +44,7 @@ grails.project.dependency.resolution = {
 		build ":tomcat:$grailsVersion"
 		compile ":cache:1.0.1"
 		// TODO update version and uncomment before github push
-		//compile ":atmosphere-meteor:0.5.1"
+		compile ":atmosphere-meteor:0.5.2"
 		runtime ":hibernate:$grailsVersion"
 		runtime ":jquery:1.10.0"
 		runtime ":resources:1.2"

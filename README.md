@@ -24,9 +24,7 @@ You will have a simple application that performs the following tasks out of the 
 
 You can review the files below to understand how it all works. 
 
-* grails-app/atmosphere/org/grails/plugins/atmosphere_meteor_sample/DefaultMeteorHandler.groovy
-
-* grails-app/atmosphere/org/grails/plugins/atmosphere_meteor_sample/DefaultMeteorServlet.groovy
+* The files in grails-app/atmosphere/org/grails/plugins/atmosphere_meteor_sample/
 
 * grails-app/conf/AtmosphereMeteorConfig.groovy
 

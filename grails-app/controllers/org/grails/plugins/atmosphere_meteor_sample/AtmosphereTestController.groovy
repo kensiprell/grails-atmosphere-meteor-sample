@@ -1,8 +1,9 @@
 package org.grails.plugins.atmosphere_meteor_sample
 
-import grails.converters.JSON
 import org.atmosphere.cpr.Broadcaster
 import org.atmosphere.cpr.BroadcasterFactory
+
+import grails.converters.JSON
 
 class AtmosphereTestController {
 
@@ -21,14 +22,9 @@ class AtmosphereTestController {
 				def publicResponse = publicResponse()
 				b.broadcast(publicResponse)
 				sleep 2000
-				println "publicResponse: $publicResponse"
-				println "b: $b"
 			}
 			b.broadcast(finishedResponse)
-			b.destroy()
-			println "finished: $b"
 		}
-
 		render "success"
 	}
 
