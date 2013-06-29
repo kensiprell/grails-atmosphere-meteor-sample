@@ -44,7 +44,7 @@ grails.project.dependency.resolution = {
 		build ":tomcat:$grailsVersion"
 		compile ":cache:1.0.1"
 		// TODO update version and uncomment before github push
-		compile ":atmosphere-meteor:0.5.2"
+		compile ":atmosphere-meteor:0.5.3"
 		runtime ":hibernate:$grailsVersion"
 		runtime ":jquery:1.10.0"
 		runtime ":resources:1.2"
