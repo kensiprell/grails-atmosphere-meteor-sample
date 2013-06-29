@@ -4,8 +4,6 @@ I use this application along with the [grails-plugin-test-script](https://github
 
 If you have a question, problem, suggestion, or want to report a bug, please submit an [issue](https://github.com/kensiprell/grails-atmosphere-meteor-sample/issues?state=open). I will reply as soon as I can.
 
-If prompted, do not update the jquery plugin after giving the run-app command.
-
 ```
 git clone git://github.com/kensiprell/grails-atmosphere-meteor-sample.git
 
