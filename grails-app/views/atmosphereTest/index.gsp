@@ -69,8 +69,8 @@
 						type: '',
 						contentType: "application/json",
 						shared: false,
-						//transport: 'websocket',
-						transport: 'long-polling',
+						transport: 'websocket',
+						//transport: 'long-polling',
 						fallbackTransport: 'long-polling',
 						trackMessageLength: true
 					},
