@@ -28,11 +28,6 @@ grails.project.dependency.resolution = {
 	}
 
 	dependencies {
-		// TODO update version
-		compile("org.atmosphere:atmosphere-runtime:1.1.0.RC4") {
-			excludes "slf4j-api"
-		}
-		compile "org.codehaus.jackson:jackson-core-asl:1.9.12"
 		test "org.gebish:geb-spock:$gebVersion"
 		test "org.seleniumhq.selenium:selenium-chrome-driver:$seleniumVersion"
 		test "org.seleniumhq.selenium:selenium-firefox-driver:$seleniumVersion"
@@ -44,7 +39,7 @@ grails.project.dependency.resolution = {
 		build ":tomcat:$grailsVersion"
 		compile ":cache:1.0.1"
 		// TODO update version and uncomment before github push
-		compile ":atmosphere-meteor:0.5.3"
+		compile ":atmosphere-meteor:0.5.4"
 		runtime ":hibernate:$grailsVersion"
 		runtime ":jquery:1.10.0"
 		runtime ":resources:1.2"
