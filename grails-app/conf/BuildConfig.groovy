@@ -1,5 +1,5 @@
 grails.servlet.version = "3.0"
-grails.tomcat.nio = true
+grails.tomcat.nio = true // Modified by atmosphere-meteor plugin on Wed Jul 17 17:49:26 CEST 2013.
 grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir = "target/test-reports"
@@ -28,6 +28,10 @@ grails.project.dependency.resolution = {
 	}
 
 	dependencies {
+		compile("org.atmosphere:atmosphere-runtime:1.1.0.RC4") {
+			excludes "slf4j-api"
+		}
+		compile "org.codehaus.jackson:jackson-core-asl:1.9.12"
 		test "org.gebish:geb-spock:$gebVersion"
 		test "org.seleniumhq.selenium:selenium-chrome-driver:$seleniumVersion"
 		test "org.seleniumhq.selenium:selenium-firefox-driver:$seleniumVersion"

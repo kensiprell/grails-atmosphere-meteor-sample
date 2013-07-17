@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse
 class PublicMeteorHandler extends HttpServlet {
 
 	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		Broadcaster b = BroadcasterFactory.getDefault().lookup(SimpleBroadcaster.class, "/jabber/public", true)
 		Meteor m = Meteor.build(request)
 

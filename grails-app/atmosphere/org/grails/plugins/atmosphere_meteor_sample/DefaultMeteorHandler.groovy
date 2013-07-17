@@ -15,7 +15,7 @@ import grails.converters.JSON
 class DefaultMeteorHandler extends HttpServlet {
 
 	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String mapping = URLDecoder.decode(request.getHeader("X-AtmosphereMeteor-Mapping"), "UTF-8")
 		Broadcaster b = BroadcasterFactory.getDefault().lookup(DefaultBroadcaster.class, mapping, true)
 		Meteor m = Meteor.build(request)
@@ -25,7 +25,7 @@ class DefaultMeteorHandler extends HttpServlet {
 	}
 
 	@Override
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		def jsonMap = JSON.parse(request.getReader().readLine().trim()) as Map
 		String mapping = URLDecoder.decode(request.getHeader("X-AtmosphereMeteor-Mapping"), "UTF-8")
 
