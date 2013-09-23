@@ -9,6 +9,8 @@ git clone git://github.com/kensiprell/grails-atmosphere-meteor-sample.git
 
 cd grails-atmosphere-meteor-sample
 
+grails refresh-dependencies
+
 grails run-app
 ```
 
