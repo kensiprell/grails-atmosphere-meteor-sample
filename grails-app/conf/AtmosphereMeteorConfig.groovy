@@ -5,7 +5,6 @@ import org.grails.plugins.atmosphere_meteor_sample.PublicMeteorHandler
 defaultMapping = "/jabber/*"
 
 defaultInitParams = [
-		"org.atmosphere.useNative": "true",
 		"org.atmosphere.cpr.broadcasterCacheClass": "org.atmosphere.cache.UUIDBroadcasterCache",
 		"org.atmosphere.cpr.AtmosphereInterceptor": """
 			org.atmosphere.client.TrackMessageSizeInterceptor,
@@ -38,7 +37,6 @@ servlets = [
 				mapping: "/jabber/public/*",
 				handler: PublicMeteorHandler,
 				initParams: [
-						"org.atmosphere.useNative": "true",
 						"org.atmosphere.cpr.broadcasterCacheClass": "org.atmosphere.cache.UUIDBroadcasterCache",
 				]
 		]

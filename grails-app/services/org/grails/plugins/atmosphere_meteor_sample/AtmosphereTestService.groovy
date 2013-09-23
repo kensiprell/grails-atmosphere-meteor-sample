@@ -16,5 +16,12 @@ class AtmosphereTestService {
 		// This method could be used to persist potential malicious code to a data store.
 		println "Warning AtmosphereTestService.recordMaliciousUseWarning: ${data}"
 	}
+
+	def sendDisconnectMessage(event, request) {
+		// This method could be used to send chat participants a message that a user has left.
+		def message = "A user has left the chat session"
+		println message
+		event.broadcaster().broadcast(message)
+	}
 }
 

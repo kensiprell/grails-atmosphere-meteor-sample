@@ -32,7 +32,7 @@ You can review the files below to understand how it all works.
 
 * grails-app/views/AtmosphereTest/index.gsp: This file contains all internal JavaScript.
 
-The application also has eight geb functional tests. Use the command below to run the tests in Chrome: 
+The application also has eight geb functional tests. Use the command below to run the tests in Chrome although you'll have to set the path to the driver in test/functional/GebConfig.groovy:
 
 ```
 git clone git://github.com/kensiprell/grails-atmosphere-meteor-sample.git
@@ -43,7 +43,7 @@ grails refresh-dependencies
 
 grails -Dgeb.env=chrome test-app functional:
 ```
-Use the command below to run the tests in Firefox. However, I could not get Selenium to send an ENTER key in Firefox 21, so the chat test could fail.
+Use the command below to run the tests in Firefox. However, I could not get Selenium to send an ENTER key in Firefox, so the chat test could fail.
 
 ```
 git clone git://github.com/kensiprell/grails-atmosphere-meteor-sample.git

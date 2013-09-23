@@ -1,18 +1,30 @@
 grails.servlet.version = "3.0"
-grails.tomcat.nio = true // Modified by atmosphere-meteor plugin on Wed Jul 17 17:49:26 CEST 2013.
+grails.tomcat.nio = true // Modified by atmosphere-meteor plugin on Mon Sep 23 14:56:42 CEST 2013.
+grails.project.dependency.resolver = "maven"
 grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir = "target/test-reports"
+grails.project.work.dir = "target/work"
 grails.project.target.level = 1.6
 grails.project.source.level = 1.6
 // TODO comment before github push
 //grails.plugin.location.atmosphere_meteor = "/Users/Ken/Development/Plugins/grails-atmosphere-meteor"
 
+grails.project.fork = [
+		test: false,
+		// use for running app
+		//run: [maxMemory: 1024, minMemory: 64, debug: false, maxPerm: 512, forkReserve: false],
+		// use for testing app
+		run: false,
+		war: false,
+		console: false
+]
+
 grails.project.dependency.resolution = {
 	// http://search.maven.org/#browse%7C778853512
-	def gebVersion = "0.9.0"
+	def gebVersion = "0.9.1"
 	// http://search.maven.org/#browse%7C-976095589
-	def seleniumVersion = "2.33.0"
+	def seleniumVersion = "2.35.0"
 	inherits("global") {
 	}
 	log "error"
@@ -28,7 +40,7 @@ grails.project.dependency.resolution = {
 	}
 
 	dependencies {
-		compile("org.atmosphere:atmosphere-runtime:1.1.0.RC4") {
+		compile("org.atmosphere:atmosphere-runtime:2.0.0") {
 			excludes "slf4j-api"
 		}
 		compile "org.codehaus.jackson:jackson-core-asl:1.9.12"
@@ -40,11 +52,11 @@ grails.project.dependency.resolution = {
 	}
 
 	plugins {
-		build ":tomcat:$grailsVersion"
+		build ":tomcat:7.0.42"
 		compile ":cache:1.0.1"
 		// TODO update version and uncomment before github push
-		compile ":atmosphere-meteor:0.5.4"
-		runtime ":hibernate:$grailsVersion"
+		compile ":atmosphere-meteor:0.6.0"
+		runtime ":hibernate:3.6.10.1"
 		runtime ":jquery:1.10.0"
 		runtime ":resources:1.2"
 		runtime ":database-migration:1.3.3"

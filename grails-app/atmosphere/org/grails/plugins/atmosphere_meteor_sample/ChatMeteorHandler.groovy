@@ -1,5 +1,6 @@
 package org.grails.plugins.atmosphere_meteor_sample
 
+import org.atmosphere.cpr.AtmosphereResourceEvent
 import org.atmosphere.cpr.AtmosphereResourceEventListenerAdapter
 import org.atmosphere.cpr.Broadcaster
 import org.atmosphere.cpr.BroadcasterFactory
@@ -12,7 +13,9 @@ import javax.servlet.http.HttpServlet
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
+import org.atmosphere.websocket.WebSocketEventListenerAdapter
 import org.grails.plugins.atmosphere_meteor.ApplicationContextHolder
+import static org.atmosphere.cpr.AtmosphereResource.TRANSPORT.WEBSOCKET
 
 class ChatMeteorHandler extends HttpServlet {
 
@@ -24,7 +27,22 @@ class ChatMeteorHandler extends HttpServlet {
 		Broadcaster b = BroadcasterFactory.getDefault().lookup(DefaultBroadcaster.class, mapping, true)
 		Meteor m = Meteor.build(request)
 
-		m.addListener(new AtmosphereResourceEventListenerAdapter())
+		if (m.transport().equals(WEBSOCKET)) {
+			m.addListener(new WebSocketEventListenerAdapter() {
+				@Override
+				void onDisconnect(AtmosphereResourceEvent event) {
+					atmosphereTestService.sendDisconnectMessage(event, request)
+				}
+			})
+		} else {
+			m.addListener(new AtmosphereResourceEventListenerAdapter() {
+				@Override
+				void onDisconnect(AtmosphereResourceEvent event) {
+					atmosphereTestService.sendDisconnectMessage(event, request)
+				}
+			})
+		}
+
 		m.setBroadcaster(b)
 	}
 
