@@ -1,6 +1,6 @@
 ## Sample App for the Grails atmosphere-meteor Plugin
 
-I use this application along with the [grails-plugin-test-script](https://github.com/kensiprell/grails-plugin-test-script) for testing the [grails-atmosphere-meteor](https://github.com/kensiprell/grails-atmosphere-meteor) plugin. It was tested with Chrome 27 and Firefox 21 on OSX and Internet Explorer 9 on Windows 7.
+I use this application along with the [grails-plugin-test-script](https://github.com/kensiprell/grails-plugin-test-script) for testing the [grails-atmosphere-meteor](https://github.com/kensiprell/grails-atmosphere-meteor) plugin. It was tested with Chrome 29 and Firefox 23 on OSX and Internet Explorer 9 on Windows 7.
 
 If you have a question, problem, suggestion, or want to report a bug, please submit an [issue](https://github.com/kensiprell/grails-atmosphere-meteor-sample/issues?state=open). I will reply as soon as I can.
 
