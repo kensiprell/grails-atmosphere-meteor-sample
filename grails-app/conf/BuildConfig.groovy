@@ -1,5 +1,5 @@
 grails.servlet.version = "3.0"
-grails.tomcat.nio = true // Modified by atmosphere-meteor plugin on Mon Sep 23 20:27:49 CEST 2013.
+grails.tomcat.nio = true // Modified by atmosphere-meteor plugin on Tue Oct 08 18:53:11 CEST 2013.
 grails.project.dependency.resolver = "maven"
 grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
@@ -40,10 +40,10 @@ grails.project.dependency.resolution = {
 	}
 
 	dependencies {
-		compile('org.atmosphere:atmosphere-runtime:2.0.0') { // Modified by atmosphere-meteor plugin on Mon Sep 23 20:27:49 CEST 2013.
+		compile('org.atmosphere:atmosphere-runtime:2.0.0') { // Modified by atmosphere-meteor plugin on Tue Oct 08 18:53:11 CEST 2013.
 			excludes "slf4j-api"
 		}
-		compile 'org.codehaus.jackson:jackson-core-asl:1.9.13' // Modified by atmosphere-meteor plugin on Mon Sep 23 20:27:49 CEST 2013.
+		compile 'org.codehaus.jackson:jackson-core-asl:1.9.13' // Modified by atmosphere-meteor plugin on Tue Oct 08 18:53:11 CEST 2013.
 		test "org.gebish:geb-spock:$gebVersion"
 		test "org.seleniumhq.selenium:selenium-chrome-driver:$seleniumVersion"
 		test "org.seleniumhq.selenium:selenium-firefox-driver:$seleniumVersion"

@@ -61,7 +61,7 @@ class ChatMeteorHandler extends HttpServlet {
 			} else {
 				atmosphereTestService.recordChat(jsonMap)
 				Broadcaster b = BroadcasterFactory.getDefault().lookup(DefaultBroadcaster.class, mapping)
-				b.broadcast(jsonMap as JSON)
+				b.broadcast(jsonMap)
 			}
 		}
 	}

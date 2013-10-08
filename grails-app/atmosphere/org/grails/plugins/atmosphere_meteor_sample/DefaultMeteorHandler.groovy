@@ -30,6 +30,6 @@ class DefaultMeteorHandler extends HttpServlet {
 		String mapping = URLDecoder.decode(request.getHeader("X-AtmosphereMeteor-Mapping"), "UTF-8")
 
 		Broadcaster b = BroadcasterFactory.getDefault().lookup(mapping)
-		b.broadcast(jsonMap as JSON)
+		b.broadcast(jsonMap)
 	}
 }
