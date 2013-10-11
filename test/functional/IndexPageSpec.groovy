@@ -23,7 +23,6 @@ class IndexPageSpec extends GebReportingSpec {
 		buttonChatSubscribe.@disabled == "true"
 	}
 
-	//@Ignore
 	def "chat sends and receives a test message"() {
 		when:
 		chatInput << "test" << Keys.ENTER

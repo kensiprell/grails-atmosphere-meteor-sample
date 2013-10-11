@@ -12,9 +12,6 @@ grails.project.source.level = 1.6
 
 grails.project.fork = [
 		test: false,
-		// use for running app
-		//run: [maxMemory: 1024, minMemory: 64, debug: false, maxPerm: 512, forkReserve: false],
-		// use for testing app
 		run: false,
 		war: false,
 		console: false
@@ -40,7 +37,7 @@ grails.project.dependency.resolution = {
 	}
 
 	dependencies {
-		compile('org.atmosphere:atmosphere-runtime:2.0.0') { // Modified by atmosphere-meteor plugin on Tue Oct 08 18:53:11 CEST 2013.
+		compile('org.atmosphere:atmosphere-runtime:2.0.1') { // Modified by atmosphere-meteor plugin on Tue Oct 08 18:53:11 CEST 2013.
 			excludes "slf4j-api"
 		}
 		compile 'org.codehaus.jackson:jackson-core-asl:1.9.13' // Modified by atmosphere-meteor plugin on Tue Oct 08 18:53:11 CEST 2013.
@@ -55,7 +52,7 @@ grails.project.dependency.resolution = {
 		build ":tomcat:7.0.42"
 		compile ":cache:1.0.1"
 		// TODO update version and uncomment before github push
-		compile ":atmosphere-meteor:0.6.0"
+		compile ":atmosphere-meteor:0.6.1"
 		runtime ":hibernate:3.6.10.1"
 		runtime ":jquery:1.10.0"
 		runtime ":resources:1.2"
