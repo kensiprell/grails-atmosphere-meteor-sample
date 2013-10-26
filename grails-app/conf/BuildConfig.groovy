@@ -8,7 +8,7 @@ grails.project.work.dir = "target/work"
 grails.project.target.level = 1.6
 grails.project.source.level = 1.6
 // TODO comment before github push
-grails.plugin.location.atmosphere_meteor = "/Users/Ken/Development/Plugins/grails-atmosphere-meteor"
+//grails.plugin.location.atmosphere_meteor = "/Users/Ken/Development/Plugins/grails-atmosphere-meteor"
 
 grails.project.fork = [
 		test: false,
@@ -46,10 +46,9 @@ grails.project.dependency.resolution = {
 
 	plugins {
 		build ":tomcat:7.0.42"
-		//build ':jetty:2.0.3'
 		compile ":cache:1.1.1"
 		// TODO update version and uncomment before github push
-		//compile ":atmosphere-meteor:0.7.0"
+		compile ":atmosphere-meteor:0.7.0"
 		runtime ":hibernate:3.6.10.2"
 		runtime ":jquery:1.10.2"
 		runtime ":resources:1.2.1"
