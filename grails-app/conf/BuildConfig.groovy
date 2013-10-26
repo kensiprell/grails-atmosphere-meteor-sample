@@ -1,5 +1,5 @@
 grails.servlet.version = "3.0"
-grails.tomcat.nio = true // Modified by atmosphere-meteor plugin on Tue Oct 08 18:53:11 CEST 2013.
+grails.tomcat.nio = true // Modified by atmosphere-meteor plugin on Thu Oct 17 19:44:59 CEST 2013.
 grails.project.dependency.resolver = "maven"
 grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
@@ -8,7 +8,7 @@ grails.project.work.dir = "target/work"
 grails.project.target.level = 1.6
 grails.project.source.level = 1.6
 // TODO comment before github push
-//grails.plugin.location.atmosphere_meteor = "/Users/Ken/Development/Plugins/grails-atmosphere-meteor"
+grails.plugin.location.atmosphere_meteor = "/Users/Ken/Development/Plugins/grails-atmosphere-meteor"
 
 grails.project.fork = [
 		test: false,
@@ -19,7 +19,7 @@ grails.project.fork = [
 
 grails.project.dependency.resolution = {
 	// http://search.maven.org/#browse%7C778853512
-	def gebVersion = "0.9.1"
+	def gebVersion = "0.9.2"
 	// http://search.maven.org/#browse%7C-976095589
 	def seleniumVersion = "2.35.0"
 	inherits("global") {
@@ -37,10 +37,6 @@ grails.project.dependency.resolution = {
 	}
 
 	dependencies {
-		compile('org.atmosphere:atmosphere-runtime:2.0.3') { // Modified by atmosphere-meteor plugin on Tue Oct 08 18:53:11 CEST 2013.
-			excludes "slf4j-api"
-		}
-		compile 'org.codehaus.jackson:jackson-core-asl:1.9.13' // Modified by atmosphere-meteor plugin on Tue Oct 08 18:53:11 CEST 2013.
 		test "org.gebish:geb-spock:$gebVersion"
 		test "org.seleniumhq.selenium:selenium-chrome-driver:$seleniumVersion"
 		test "org.seleniumhq.selenium:selenium-firefox-driver:$seleniumVersion"
@@ -50,10 +46,11 @@ grails.project.dependency.resolution = {
 
 	plugins {
 		build ":tomcat:7.0.42"
+		//build ':jetty:2.0.3'
 		compile ":cache:1.1.1"
 		// TODO update version and uncomment before github push
-		compile ":atmosphere-meteor:0.6.2"
-		runtime ":hibernate:3.6.10.1"
+		//compile ":atmosphere-meteor:0.7.0"
+		runtime ":hibernate:3.6.10.2"
 		runtime ":jquery:1.10.2"
 		runtime ":resources:1.2.1"
 		runtime ":database-migration:1.3.6"
