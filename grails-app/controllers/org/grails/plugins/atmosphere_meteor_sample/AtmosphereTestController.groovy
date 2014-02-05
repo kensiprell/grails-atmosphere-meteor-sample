@@ -12,7 +12,7 @@ class AtmosphereTestController {
 	}
 
 	def triggerPublic() {
-		String mapping = "/jabber/public"
+		String mapping = "/atmosphere/public"
 		def finishedResponse = [type: "public", resource: mapping, message: "Finished."] as JSON
 		Broadcaster b = BroadcasterFactory.getDefault().lookup(mapping, true)
 
@@ -29,7 +29,7 @@ class AtmosphereTestController {
 	}
 
 	def publicResponse() {
-		String mapping = "/jabber/public"
+		String mapping = "/atmosphere/public"
 		return [type: "public", resource: mapping, message: "Updated at " + new Date() + "."] as JSON
 	}
 }

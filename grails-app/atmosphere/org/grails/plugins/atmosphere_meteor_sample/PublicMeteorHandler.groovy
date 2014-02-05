@@ -15,7 +15,7 @@ class PublicMeteorHandler extends HttpServlet {
 
 	@Override
 	void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		Broadcaster b = BroadcasterFactory.getDefault().lookup(SimpleBroadcaster.class, "/jabber/public", true)
+		Broadcaster b = BroadcasterFactory.getDefault().lookup(SimpleBroadcaster.class, "/atmosphere/public", true)
 		Meteor m = Meteor.build(request)
 
 		m.addListener(new AtmosphereResourceEventListenerAdapter())

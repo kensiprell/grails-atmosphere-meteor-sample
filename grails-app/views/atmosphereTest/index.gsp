@@ -74,34 +74,34 @@
 						fallbackTransport: 'long-polling',
 						trackMessageLength: true
 					},
-					jabberRequest = $.extend({}, defaults, options);
-			jabberRequest.onOpen = function (response) {
-				console.log('jabberOpen transport: ' + response.transport);
+					atmosphereRequest = $.extend({}, defaults, options);
+			atmosphereRequest.onOpen = function (response) {
+				console.log('atmosphereOpen transport: ' + response.transport);
 			};
-			jabberRequest.onReconnect = function (request, response) {
-				console.log("jabberReconnect");
+			atmosphereRequest.onReconnect = function (request, response) {
+				console.log("atmosphereReconnect");
 			};
-			jabberRequest.onMessage = function (response) {
+			atmosphereRequest.onMessage = function (response) {
 				Jabber.onMessage(response);
 			};
-			jabberRequest.onError = function (response) {
-				console.log('jabberError: ' + response);
+			atmosphereRequest.onError = function (response) {
+				console.log('atmosphereError: ' + response);
 			};
-			jabberRequest.onTransportFailure = function (errorMsg, request) {
-				console.log('jabberTransportFailure: ' + errorMsg);
+			atmosphereRequest.onTransportFailure = function (errorMsg, request) {
+				console.log('atmosphereTransportFailure: ' + errorMsg);
 			};
-			jabberRequest.onClose = function (response) {
-				console.log('jabberClose: ' + response);
+			atmosphereRequest.onClose = function (response) {
+				console.log('atmosphereClose: ' + response);
 			};
 			switch (options.type) {
 				case 'chat':
-					Jabber.chatSubscription = Jabber.socket.subscribe(jabberRequest);
+					Jabber.chatSubscription = Jabber.socket.subscribe(atmosphereRequest);
 					break;
 				case 'notification':
-					Jabber.notificationSubscription = Jabber.socket.subscribe(jabberRequest);
+					Jabber.notificationSubscription = Jabber.socket.subscribe(atmosphereRequest);
 					break;
 				case 'public':
-					Jabber.publicSubscription = Jabber.socket.subscribe(jabberRequest);
+					Jabber.publicSubscription = Jabber.socket.subscribe(atmosphereRequest);
 					break;
 				default:
 					return false;
@@ -157,11 +157,11 @@
 		}
 
 		$('#chat-subscribe').on('click', function () {
-			var jabberRequest = {
+			var atmosphereRequest = {
 				type: 'chat',
-				url: 'jabber/chat/12345'
+				url: 'atmosphere/chat/12345'
 			};
-			Jabber.subscribe(jabberRequest);
+			Jabber.subscribe(atmosphereRequest);
 			$(this).attr('disabled', 'disabled');
 			$('#chat-input').focus();
 		});
@@ -179,13 +179,13 @@
 		});
 
 		$('#notification-subscribe').on('click', function () {
-			var jabberRequest = {
+			var atmosphereRequest = {
 				type: 'notification',
 				// note that the DefaultMeteorHandler uses the header below for setting and getting the broadcaster
-				headers: {'X-AtmosphereMeteor-Mapping': '/jabber/notification/userName'},
-				url: 'jabber/notification/userName'
+				headers: {'X-AtmosphereMeteor-Mapping': '/atmosphere/notification/userName'},
+				url: 'atmosphere/notification/userName'
 			};
-			Jabber.subscribe(jabberRequest);
+			Jabber.subscribe(atmosphereRequest);
 			$(this).attr('disabled', 'disabled');
 		});
 
@@ -198,12 +198,12 @@
 		});
 
 		$('#public-subscribe').on('click', function () {
-			var jabberRequest = {
+			var atmosphereRequest = {
 				type: 'public',
-				url: 'jabber/public',
+				url: 'atmosphere/public',
 				trackMessageLength: false
 			};
-			Jabber.subscribe(jabberRequest);
+			Jabber.subscribe(atmosphereRequest);
 			$(this).attr('disabled', 'disabled');
 		});
 
