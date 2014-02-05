@@ -18,6 +18,8 @@ grails.mime.types = [
 
 grails.resources.adhoc.patterns = ["/images/*", "/css/*", "/js/*", "/plugins/*"]
 
+grails.controllers.defaultScope = "singleton"
+
 grails.views.default.codec = "html"
 grails.views.gsp.encoding = "UTF-8"
 grails.converters.encoding = "UTF-8"
@@ -44,7 +46,7 @@ environments {
 
 log4j = {
 	root {
-		//info()
+		info()
 	}
 
 	info "org.atmosphere"

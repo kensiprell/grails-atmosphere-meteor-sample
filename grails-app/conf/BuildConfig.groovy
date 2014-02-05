@@ -1,5 +1,5 @@
 grails.servlet.version = "3.0"
-grails.tomcat.nio = true // Modified by atmosphere-meteor plugin on Thu Oct 17 19:44:59 CEST 2013.
+grails.tomcat.nio = true
 grails.project.dependency.resolver = "maven"
 grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
@@ -7,32 +7,40 @@ grails.project.test.reports.dir = "target/test-reports"
 grails.project.work.dir = "target/work"
 grails.project.target.level = 1.6
 grails.project.source.level = 1.6
-// TODO comment before github push
-//grails.plugin.location.atmosphere_meteor = "/Users/Ken/Development/Plugins/grails-atmosphere-meteor"
 
 grails.project.fork = [
+		// configure settings for compilation JVM, note that if you alter the Groovy version forked compilation is required
+		//  compile: [maxMemory: 256, minMemory: 64, debug: false, maxPerm: 256, daemon:true],
+
+		// configure settings for the test-app JVM, uses the daemon by default
+		//test: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256, daemon: true],
 		test: false,
+		// configure settings for the run-app JVM
+		//run: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256, forkReserve:false],
 		run: false,
-		war: false,
-		console: false
+		// configure settings for the run-war JVM
+		war: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256, forkReserve: false],
+		// configure settings for the Console UI JVM
+		console: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256]
 ]
 
 grails.project.dependency.resolution = {
 	// http://search.maven.org/#browse%7C778853512
 	def gebVersion = "0.9.2"
 	// http://search.maven.org/#browse%7C-976095589
-	def seleniumVersion = "2.35.0"
+	def seleniumVersion = "2.39.0"
 	inherits("global") {
 	}
 	log "error"
 	checksums true
+	legacyResolve false
 
 	repositories {
 		inherits true
 		grailsPlugins()
 		grailsHome()
-		grailsCentral()
 		mavenLocal()
+		grailsCentral()
 		mavenCentral()
 	}
 
@@ -45,14 +53,18 @@ grails.project.dependency.resolution = {
 	}
 
 	plugins {
-		build ":tomcat:7.0.42"
+		build ":tomcat:7.0.50"
+
+		// TODO update version
+		compile ":atmosphere-meteor:0.7.1"
 		compile ":cache:1.1.1"
-		// TODO update version and uncomment before github push
-		compile ":atmosphere-meteor:0.7.0"
-		runtime ":hibernate:3.6.10.2"
-		runtime ":jquery:1.10.2"
+		compile ":scaffolding:2.0.1"
+
+		runtime ":database-migration:1.3.8"
+		runtime ":hibernate:3.6.10.7"
+		runtime ":jquery:1.11.0"
 		runtime ":resources:1.2.1"
-		runtime ":database-migration:1.3.6"
+
 		test ":geb:$gebVersion"
 		test ":spock:0.7"
 	}

@@ -16,6 +16,7 @@ stacktrace.log
 /cobertura.ser
 .DS_Store
 /target/
+/tomcat.8080/
 /out/
 /web-app/plugins
 /web-app/WEB-INF/classes

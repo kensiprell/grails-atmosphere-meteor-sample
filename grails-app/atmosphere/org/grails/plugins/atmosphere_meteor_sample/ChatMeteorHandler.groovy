@@ -14,12 +14,12 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
 import org.atmosphere.websocket.WebSocketEventListenerAdapter
-import org.grails.plugins.atmosphere_meteor.ApplicationContextHolder
+import grails.util.Holders
 import static org.atmosphere.cpr.AtmosphereResource.TRANSPORT.WEBSOCKET
 
 class ChatMeteorHandler extends HttpServlet {
 
-	def atmosphereTestService = ApplicationContextHolder.getBean("atmosphereTestService")
+	def atmosphereTestService = Holders.applicationContext.getBean("atmosphereTestService")
 
 	@Override
 	void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
