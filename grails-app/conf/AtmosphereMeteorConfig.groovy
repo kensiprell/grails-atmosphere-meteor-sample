@@ -16,7 +16,7 @@ defaultInitParams = [
 servlets = [
 		MeteorServlet: [
 				className: "org.grails.plugins.atmosphere_meteor_sample.DefaultMeteorServlet",
-				mapping: "/atmosphere/*",
+				mapping: defaultMapping,
 				handler: DefaultMeteorHandler,
 				initParams: defaultInitParams
 		],

@@ -2,7 +2,6 @@ package org.grails.plugins.atmosphere_meteor_sample
 
 import org.atmosphere.cpr.Broadcaster
 import org.atmosphere.cpr.BroadcasterFactory
-
 import grails.converters.JSON
 
 class AtmosphereTestController {

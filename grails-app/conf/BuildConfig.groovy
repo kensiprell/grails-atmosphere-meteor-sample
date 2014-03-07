@@ -53,17 +53,19 @@ grails.project.dependency.resolution = {
 	}
 
 	plugins {
+		//build ":tomcat:7.0.52.1"
 		build ":tomcat:7.0.50"
 
 		// TODO update version
 		compile ":atmosphere-meteor:0.7.1"
 		compile ":cache:1.1.1"
-		compile ":scaffolding:2.0.1"
+		compile ":scaffolding:2.0.2"
+		compile ":asset-pipeline:1.6.2"
 
 		runtime ":database-migration:1.3.8"
-		runtime ":hibernate:3.6.10.7"
-		runtime ":jquery:1.11.0"
-		runtime ":resources:1.2.1"
+		runtime ":hibernate:3.6.10.9"
+		runtime ":jquery:1.11.0.1"
+		//runtime ":resources:1.2.7"
 
 		test ":geb:$gebVersion"
 		test ":spock:0.7"

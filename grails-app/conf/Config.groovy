@@ -35,6 +35,8 @@ grails.exceptionresolver.params.exclude = ["password"]
 
 grails.hibernate.cache.queries = false
 
+grails.resources.adhoc.excludes = ["**/WEB-INF/**","**/META-INF/**"]
+
 environments {
 	development {
 		grails.logging.jul.usebridge = true

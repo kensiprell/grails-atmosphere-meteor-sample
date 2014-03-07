@@ -4,10 +4,13 @@
 <head>
 	<meta name="layout" content="main"/>
 	<title>Atmosphere Test</title>
-	<r:require module="jquery"/>
 	%{--TODO change the module below to either atmosphere-meteor or atmosphere-meteor-jquery --}%
-	<r:require module="atmosphere-meteor"/>
+%{--
+	<r:require module="jquery"/>
+	<r:require module="atmosphere-meteor-jquery"/>
 	<r:layoutResources/>
+--}%
+	<asset:javascript src="application.js"/>
 </head>
 
 <body>
