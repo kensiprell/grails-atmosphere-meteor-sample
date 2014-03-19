@@ -2,9 +2,9 @@ import org.grails.plugins.atmosphere_meteor_sample.ChatMeteorHandler
 import org.grails.plugins.atmosphere_meteor_sample.DefaultMeteorHandler
 import org.grails.plugins.atmosphere_meteor_sample.PublicMeteorHandler
 
-defaultMapping = "/atmosphere/*"
+def defaultMapping = "/atmosphere/*"
 
-defaultInitParams = [
+def defaultInitParams = [
 		"org.atmosphere.cpr.broadcasterCacheClass": "org.atmosphere.cache.UUIDBroadcasterCache",
 		"org.atmosphere.cpr.AtmosphereInterceptor": """
 			org.atmosphere.client.TrackMessageSizeInterceptor,

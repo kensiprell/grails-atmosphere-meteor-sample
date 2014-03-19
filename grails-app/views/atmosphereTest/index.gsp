@@ -4,13 +4,12 @@
 <head>
 	<meta name="layout" content="main"/>
 	<title>Atmosphere Test</title>
-	%{--TODO change the module below to either atmosphere-meteor or atmosphere-meteor-jquery --}%
-%{--
-	<r:require module="jquery"/>
 	<r:require module="atmosphere-meteor-jquery"/>
 	<r:layoutResources/>
+%{--
+	<asset:javascript src="atmosphere-meteor-jquery.js"/>
 --}%
-	<asset:javascript src="application.js"/>
+
 </head>
 
 <body>
@@ -85,6 +84,7 @@
 				console.log("atmosphereReconnect");
 			};
 			atmosphereRequest.onMessage = function (response) {
+				//console.log('onMessage: ' + response.responseBody);
 				Jabber.onMessage(response);
 			};
 			atmosphereRequest.onError = function (response) {
