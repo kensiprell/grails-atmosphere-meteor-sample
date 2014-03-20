@@ -2,10 +2,10 @@ package org.grails.plugins.atmosphere_meteor_sample
 
 import javax.servlet.ServletConfig
 import javax.servlet.ServletException
-import javax.servlet.http.HttpServlet
 import org.atmosphere.cpr.MeteorServlet
 import org.atmosphere.handler.ReflectorServletProcessor
 import org.grails.plugins.atmosphere_meteor.AtmosphereConfigurationHolder
+
 
 class DefaultMeteorServlet extends MeteorServlet {
 
@@ -13,17 +13,15 @@ class DefaultMeteorServlet extends MeteorServlet {
 	public void init(ServletConfig sc) throws ServletException {
 		super.init(sc)
 
-		def servletName = sc.servletName
-		def config = AtmosphereConfigurationHolder.atmosphereMeteorConfig
-		def servlet = config.servlets.get(servletName)
-		def mapping = servlet.mapping
-		def handler = servlet.handler.newInstance() as HttpServlet
-		def servletClass = handler.class.getName()
+		def servletConfig = AtmosphereConfigurationHolder.atmosphereMeteorConfig.servlets.get(sc.servletName)
+		def mapping = servletConfig.mapping
+		def handler = servletConfig.handler.newInstance()
+		def handlerClass = handler.class.getName()
 
-		ReflectorServletProcessor r = new ReflectorServletProcessor(handler)
-		r.setServletClassName(servletClass)
-		framework.addAtmosphereHandler(mapping, r)
-		logger.info "Added AtmosphereHandler: $servletClass mapped to $mapping"
+		ReflectorServletProcessor rsp = new ReflectorServletProcessor()
+		rsp.setServletClassName(handlerClass)
+		framework.addAtmosphereHandler(mapping, rsp)
+		logger.info "Added AtmosphereHandler: $handlerClass mapped to $mapping"
 	}
 }
 
