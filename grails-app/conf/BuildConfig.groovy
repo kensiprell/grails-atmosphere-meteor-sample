@@ -28,9 +28,16 @@ grails.project.dependency.resolution = {
 		mavenLocal()
 		grailsCentral()
 		mavenCentral()
+		mavenRepo "http://oss.sonatype.org/content/repositories/snapshots"
 	}
 
 	dependencies {
+/*
+		compile "org.atmosphere:atmosphere-runtime:2.2.0-SNAPSHOT", {
+			excludes "slf4j-api"
+		}
+*/
+
 		//build "org.apache.tomcat:tomcat-catalina-ant:8.0.1" // required for tomcat8 plugin
 
 		test "org.gebish:geb-spock:$gebVersion"
@@ -42,13 +49,13 @@ grails.project.dependency.resolution = {
 
 	plugins {
 		build ":tomcat:7.0.50"
-		//build ":tomcat:7.0.52.1"
-		//compile ":tomcat8:8.0.1.1"
+		//build ":tomcat:7.0.52.1"    // does not work in Atmosphere 2.1.1
+		//compile ":tomcat8:8.0.1.1"  // does not work in Atmosphere 2.1.1
 
-		compile ":atmosphere-meteor:0.8.0"
-		compile ":cache:1.1.1" // comment out for tomcat8 plugin
+		compile ":atmosphere-meteor:0.8.2"
+		compile ":cache:1.1.1"        // comment out for tomcat8 plugin
 		compile ":scaffolding:2.0.3"
-		//compile ":asset-pipeline:1.7.1"
+		//compile ":asset-pipeline:1.7.2"
 
 		runtime ":database-migration:1.3.8"
 		runtime ":hibernate:3.6.10.10"
