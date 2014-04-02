@@ -13,7 +13,6 @@ class DefaultMeteorServlet extends MeteorServlet {
 	public void init(ServletConfig sc) throws ServletException {
 		super.init(sc)
 
-		// TODO move these changes to artefact
 		def servletConfig = AtmosphereConfigurationHolder.atmosphereMeteorConfig.servlets.get(sc.servletName)
 		def mapping = servletConfig.mapping
 		def handler = servletConfig.handler.newInstance()
@@ -23,11 +22,6 @@ class DefaultMeteorServlet extends MeteorServlet {
 		rsp.setServletClassName(handlerClass)
 		framework.addAtmosphereHandler(mapping, rsp)
 		logger.info "Added AtmosphereHandler: $handlerClass mapped to $mapping"
-
-		println "TEST START"
-		println "sc.servletName: " + sc.servletName
-		println "framework.servletConfig.servletName: " + framework.servletConfig.servletName
-		println "TEST END"
 	}
 }
 

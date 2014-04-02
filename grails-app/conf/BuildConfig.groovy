@@ -48,17 +48,16 @@ grails.project.dependency.resolution = {
 	}
 
 	plugins {
-		build ":tomcat:7.0.50"
-		//build ":tomcat:7.0.52.1"    // does not work in Atmosphere 2.1.1
-		//compile ":tomcat8:8.0.1.1"  // does not work in Atmosphere 2.1.1
+		build ":tomcat:7.0.52.1"
+		//compile ":tomcat8:8.0.1.1"
 
-		compile ":atmosphere-meteor:0.8.2"
+		compile ":atmosphere-meteor:0.8.3"
 		compile ":cache:1.1.1"        // comment out for tomcat8 plugin
 		compile ":scaffolding:2.0.3"
 		//compile ":asset-pipeline:1.7.2"
 
 		runtime ":database-migration:1.3.8"
-		runtime ":hibernate:3.6.10.10"
+		runtime ":hibernate:3.6.10.11"
 		runtime ":jquery:1.11.0.1"
 		runtime ":resources:1.2.7"
 
