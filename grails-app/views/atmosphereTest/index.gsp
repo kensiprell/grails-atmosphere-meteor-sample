@@ -1,15 +1,18 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page import="grails.util.Holders" %>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta name="layout" content="main"/>
 	<title>Atmosphere Test</title>
-	<r:require module="atmosphere-meteor-jquery"/>
-	<r:layoutResources/>
-%{--
-	<asset:javascript src="atmosphere-meteor-jquery.js"/>
---}%
-
+	<g:set var="grailsVersion" value="${Holders.grailsApplication.metadata['app.grails.version']}"/>
+	<g:if test="${grailsVersion.startsWith("2.1") || grailsVersion.startsWith("2.2") || grailsVersion.startsWith("2.3")}">
+		<r:require module="atmosphere-meteor-jquery"/>
+		<r:layoutResources/>
+	</g:if>
+	<g:else>
+		<asset:javascript src="atmosphere-meteor-jquery.js"/>
+	</g:else>
 </head>
 
 <body>
