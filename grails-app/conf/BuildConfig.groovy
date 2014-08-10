@@ -14,7 +14,7 @@ grails.project.fork = [
 
 grails.project.dependency.resolution = {
 	// http://search.maven.org/#browse%7C778853512
-	def gebVersion = "0.9.2"
+	def gebVersion = "0.9.3"
 	// http://search.maven.org/#browse%7C-976095589
 	def seleniumVersion = "2.41.0"
 	inherits "global"
@@ -48,15 +48,15 @@ grails.project.dependency.resolution = {
 	}
 
 	plugins {
-		build ":tomcat:7.0.53"
+		build ":tomcat:7.0.54"
 		//compile ":tomcat8:8.0.1.1"
 
-		compile ":asset-pipeline:1.8.8"
-		compile ":atmosphere-meteor:0.8.4"
-		compile ":cache:1.1.6"        // comment out for tomcat8 plugin
+		compile ":asset-pipeline:1.9.6"
+		compile ":atmosphere-meteor:0.9.0"
+		compile ":cache:1.1.7"        // comment out for tomcat8 plugin
 
 		runtime ":database-migration:1.4.0"
-		runtime ":hibernate:3.6.10.15"
+		runtime ":hibernate:3.6.10.17"
 		runtime ":jquery:1.11.1"
 
 		test ":geb:$gebVersion"
