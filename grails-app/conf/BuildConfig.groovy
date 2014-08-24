@@ -32,12 +32,6 @@ grails.project.dependency.resolution = {
 	}
 
 	dependencies {
-/*
-		compile "org.atmosphere:atmosphere-runtime:2.2.0-SNAPSHOT", {
-			excludes "slf4j-api"
-		}
-*/
-
 		//build "org.apache.tomcat:tomcat-catalina-ant:8.0.1" // required for tomcat8 plugin
 
 		test "org.gebish:geb-spock:$gebVersion"
@@ -51,8 +45,8 @@ grails.project.dependency.resolution = {
 		build ":tomcat:7.0.54"
 		//compile ":tomcat8:8.0.1.1"
 
-		compile ":asset-pipeline:1.9.6"
-		compile ":atmosphere-meteor:0.9.2"
+		compile ":asset-pipeline:1.9.7"
+		compile ":atmosphere-meteor:1.0.0"
 		compile ":cache:1.1.7"        // comment out for tomcat8 plugin
 
 		runtime ":database-migration:1.4.0"

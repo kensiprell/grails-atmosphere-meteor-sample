@@ -11,11 +11,15 @@ import javax.servlet.http.HttpServlet
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
+import grails.util.Holders
+
 class PublicMeteorHandler extends HttpServlet {
 
-	@Override
+	def atmosphereMeteor = Holders.applicationContext.getBean("atmosphereMeteor")
+
+		@Override
 	void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		Broadcaster b = BroadcasterFactory.getDefault().lookup(SimpleBroadcaster.class, "/atmosphere/public", true)
+		Broadcaster b = atmosphereMeteor.broadcasterFactory.lookup(SimpleBroadcaster.class, "/atmosphere/public", true)
 		Meteor m = Meteor.build(request)
 
 		m.addListener(new AtmosphereResourceEventListenerAdapter())

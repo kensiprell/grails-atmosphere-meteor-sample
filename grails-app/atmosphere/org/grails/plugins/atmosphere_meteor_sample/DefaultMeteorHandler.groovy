@@ -11,13 +11,16 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
 import grails.converters.JSON
+import grails.util.Holders
 
 class DefaultMeteorHandler extends HttpServlet {
 
-	@Override
+	def atmosphereMeteor = Holders.applicationContext.getBean("atmosphereMeteor")
+
+		@Override
 	void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String mapping = URLDecoder.decode(request.getHeader("X-AtmosphereMeteor-Mapping"), "UTF-8")
-		Broadcaster b = BroadcasterFactory.getDefault().lookup(DefaultBroadcaster.class, mapping, true)
+		Broadcaster b = atmosphereMeteor.broadcasterFactory.lookup(DefaultBroadcaster.class, mapping, true)
 		Meteor m = Meteor.build(request)
 
 		m.addListener(new AtmosphereResourceEventListenerAdapter())
@@ -29,7 +32,7 @@ class DefaultMeteorHandler extends HttpServlet {
 		def jsonMap = JSON.parse(request.getReader().readLine().trim()) as Map
 		String mapping = URLDecoder.decode(request.getHeader("X-AtmosphereMeteor-Mapping"), "UTF-8")
 
-		Broadcaster b = BroadcasterFactory.getDefault().lookup(mapping)
+		Broadcaster b = atmosphereMeteor.broadcasterFactory.lookup(mapping)
 		b.broadcast(jsonMap)
 	}
 }

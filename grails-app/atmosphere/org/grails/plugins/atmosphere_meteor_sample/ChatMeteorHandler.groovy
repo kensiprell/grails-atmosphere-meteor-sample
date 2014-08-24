@@ -19,12 +19,13 @@ import static org.atmosphere.cpr.AtmosphereResource.TRANSPORT.WEBSOCKET
 
 class ChatMeteorHandler extends HttpServlet {
 
+	def atmosphereMeteor = Holders.applicationContext.getBean("atmosphereMeteor")
 	def atmosphereTestService = Holders.applicationContext.getBean("atmosphereTestService")
-
+	
 	@Override
 	void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String mapping = "/atmosphere/chat" + request.getPathInfo()
-		Broadcaster b = BroadcasterFactory.getDefault().lookup(DefaultBroadcaster.class, mapping, true)
+		Broadcaster b = atmosphereMeteor.broadcasterFactory.lookup(DefaultBroadcaster.class, mapping, true)
 		Meteor m = Meteor.build(request)
 
 		if (m.transport().equals(WEBSOCKET)) {
@@ -60,7 +61,7 @@ class ChatMeteorHandler extends HttpServlet {
 				atmosphereTestService.recordMaliciousUseWarning(jsonMap)
 			} else {
 				atmosphereTestService.recordChat(jsonMap)
-				Broadcaster b = BroadcasterFactory.getDefault().lookup(DefaultBroadcaster.class, mapping)
+				Broadcaster b = atmosphereMeteor.broadcasterFactory.lookup(DefaultBroadcaster.class, mapping)
 				b.broadcast(jsonMap)
 			}
 		}
