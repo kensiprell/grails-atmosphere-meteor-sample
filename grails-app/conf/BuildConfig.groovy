@@ -45,8 +45,8 @@ grails.project.dependency.resolution = {
 		build ":tomcat:7.0.54"
 		//compile ":tomcat8:8.0.1.1"
 
-		compile ":asset-pipeline:1.9.7"
-		compile ":atmosphere-meteor:1.0.0"
+		compile ":asset-pipeline:1.9.9"
+		compile ":atmosphere-meteor:1.0.1"
 		compile ":cache:1.1.7"        // comment out for tomcat8 plugin
 
 		runtime ":database-migration:1.4.0"
