@@ -40,9 +40,9 @@ grails.project.dependency.resolution = {
 	}
 
 	plugins {
-		build ":tomcat:8.0.15"
+		build ":tomcat:8.0.22"
 
-		compile ":asset-pipeline:1.9.9"
+		compile ":asset-pipeline:2.2.3"
 		compile ":atmosphere-meteor:1.0.4"
 		compile ":cache:1.1.8"        
 
