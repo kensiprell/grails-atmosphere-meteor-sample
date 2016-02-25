@@ -26,7 +26,8 @@ class AtmosphereTestService {
 		// This method could be used to send chat participants a message that a user has left.
 		def message = "A user has left the chat session"
 		println message
-		event.broadcaster().broadcast(message)
+		def finishedResponse = [type:"chat", message:message] as JSON
+		event.broadcaster().broadcast(finishedResponse)
 	}
 	
 	def triggerPublic() {
