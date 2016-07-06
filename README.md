@@ -1,3 +1,5 @@
+## This repository is no longer maintained.
+
 ## Sample App for the Grails atmosphere-meteor Plugin
 
 I use this application along with the [grails-plugin-test-script](https://github.com/kensiprell/grails-plugin-test-script) for testing the [grails-atmosphere-meteor](https://github.com/kensiprell/grails-atmosphere-meteor) plugin.
